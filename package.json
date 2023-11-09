@@ -1,0 +1,27 @@
+{
+  "name": "alien-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "swagger": "node ./config/swagger/swagger.js"
+  },
+  "author": "Emilee Hatch",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.2.0",
+    "mongoose": "^8.0.0",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "swagger-autogen": "^2.23.7"
+  }
+}

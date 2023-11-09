@@ -1,0 +1,270 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Alien API",
+    "description": "This API provides endpoints to manage information about aliens from various galaxies."
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Aliens",
+      "description": "Endpoints related to aliens"
+    },
+    {
+      "name": "Miscellaneous",
+      "description": "Other miscellaneous endpoints"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "API key required for authentication"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/aliens": {
+      "post": {
+        "description": "Create a new alien",
+        "parameters": [
+          {
+            "name": "alienData",
+            "in": "body",
+            "description": "Data for creating a new alien",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the alien"
+                },
+                "species": {
+                  "type": "string",
+                  "description": "Species of the alien"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Alien"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Retrieve a list of aliens",
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Alien"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/aliens/{id}": {
+      "get": {
+        "description": "Retrieve details of a specific alien by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the alien to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Alien"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Update an alien's information by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the alien to update"
+          },
+          {
+            "name": "alienData",
+            "in": "body",
+            "description": "Data for updating the alien",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Updated name of the alien"
+                },
+                "species": {
+                  "type": "string",
+                  "description": "Updated species of the alien"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Alien"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete an alien by ID",
+        "parameters": {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string",
+          "description": "ID of the alien to delete"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Success"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "Retrieve API documentation",
+        "responses": {
+          "default": {
+            "description": "Default response"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Alien": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the alien"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the alien"
+        },
+        "species": {
+          "type": "string",
+          "description": "Species of the alien"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Error message"
+        }
+      }
+    },
+    "Success": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Success message"
+        }
+      }
+    }
+  }
+}
+
