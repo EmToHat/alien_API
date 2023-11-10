@@ -1,0 +1,34 @@
+# LOCALHOST
+
+### Get all aliens
+GET http://localhost:3000/aliens
+
+### Get alien by id
+GET http://localhost:3000/aliens/654ae44a1b7848483a4f2678
+
+### Create alien
+POST http://localhost:3000/aliens
+Content-Type: application/json
+
+{
+    "name": "Proetus Cipriani",
+    "species": "Ke'gan",
+    "homePlanet": "Cupidor",
+    "description": "Mammalian cyborgs who have dark skin.",
+    "technologyLevel": 5,
+    "language": "Ukic"
+}
+
+### Update alien by id
+PUT http://localhost:3000/aliens/654ae44a1b7848483a4f2678
+Content-Type: application/json
+
+{
+    "name": "Ser Molily Updated",
+    "description": "Updated description",
+    "technologyLevel": 1,
+    "language": "Updated Language"
+}
+
+### Delete alien by id
+DELETE http://localhost:3000/aliens/654ae44a1b7848483a4f2678
