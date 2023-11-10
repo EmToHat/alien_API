@@ -26,10 +26,18 @@ const alienSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
+        default: Date.now
     },
     updatedAt: {
         type: Date,
+        default: Date.now
     },
+});
+
+// Middleware to update the 'updatedAt' field before saving
+alienSchema.pre('save', function (next) {
+    this.updatedAt = new Date();
+    next();
 });
 
 // Create a Mongoose model named "Alien" based on the defined schema
