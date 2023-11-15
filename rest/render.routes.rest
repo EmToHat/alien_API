@@ -1,0 +1,34 @@
+# PRODUCTION DEPLOY
+
+### Get all aliens
+GET https://emileehatch.onrender.com/aliens 
+
+### Get alien by id
+GET https://emileehatch.onrender.com/aliens/654ae44a1b7848483a4f2679
+
+### Create alien
+POST https://emileehatch.onrender.com/aliens
+Content-Type: application/json
+
+{
+    "name": "Morgaine",
+    "species": "Bosnu",
+    "homePlanet": "Dunicus",
+    "description": "Dog-like creatures who have a high-pitched voice. Their homeworld is located extremely close to the centre of the galaxy. They control an empire of twelve conquered worlds, but they rarely leave their home planet. Instead they control their subjects using artificially intelligent and teleoperated robots.",
+    "technologyLevel": 5,
+    "language": "Intda"
+}
+
+### Update alien by id
+PUT https://emileehatch.onrender.com/aliens/654ae44a1b7848483a4f2679
+Content-Type: application/json
+
+{
+    "name": "Kidbag Blublan Updated",
+    "description": "Updated description",
+    "technologyLevel": 1,
+    "language": "Updated Language"
+}
+
+### Delete alien by id
+DELETE https://emileehatch.onrender.com/aliens/654ae44a1b7848483a4f2679
