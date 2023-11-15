@@ -1,54 +1,37 @@
-// Import the 'body' function from the 'express-validator' library
-const { body } = require("express-validator");
+const Joi = require("joi");
 
-// Validation middleware for creating a new Alien
-const createAlienValidation = [
-    // Check if 'name' field is not empty, otherwise return an error message
-    body("name").notEmpty().withMessage("Name is required"),
+// Validation schema for getting a specific Alien by ID
+const getAlienByIdSchema = Joi.object({
+    id: Joi.string().required(),
+});
 
-    // Check if 'species' field is not empty, otherwise return an error message
-    body("species").notEmpty().withMessage("Species is required"),
+// Validation schema for creating a new Alien
+const createAlienSchema = Joi.object({
+    name: Joi.string().required(),
+    species: Joi.string().required(),
+    homePlanet: Joi.string().required(),
+    description: Joi.string().required(),
+    technologyLevel: Joi.number().integer().min(0).max(5),
+});
 
-    // Check if 'homePlanet' field is not empty, otherwise return an error message
-    body("homePlanet").notEmpty().withMessage("Home planet is required"),
+// Validation schema for updating an existing Alien by ID
+const updateAlienSchema = Joi.object({
+    id: Joi.string().required(),
+    name: Joi.string().required(),
+    species: Joi.string().required(),
+    homePlanet: Joi.string().required(),
+    description: Joi.string().required(),
+    technologyLevel: Joi.number().integer().min(0).max(5),
+});
 
-    // Check if 'description' field is not empty, otherwise return an error message
-    body("description").notEmpty().withMessage("Description is required"),
+// Validation schema for deleting an Alien by ID
+const deleteAlienSchema = Joi.object({
+    id: Joi.string().required(),
+});
 
-    // Check if 'technologyLevel' is a valid integer between 0 and 5, otherwise return an error message
-    body("technologyLevel").isInt().withMessage("Technology level must be a number between 0 and 5"),
-];
-
-// Validation middleware for updating an existing Alien by ID
-const updateAlienValidation = [
-    // Check if 'id' parameter is a valid MongoDB ObjectId, otherwise return an error message
-    body("id").isMongoId().withMessage("Invalid ID parameter"),
-
-    // Check if 'name' field is not empty, otherwise return an error message
-    body("name").notEmpty().withMessage("Name is required"),
-
-    // Check if 'species' field is not empty, otherwise return an error message
-    body("species").notEmpty().withMessage("Species is required"),
-
-    // Check if 'homePlanet' field is not empty, otherwise return an error message
-    body("homePlanet").notEmpty().withMessage("Home planet is required"),
-
-    // Check if 'description' field is not empty, otherwise return an error message
-    body("description").notEmpty().withMessage("Description is required"),
-
-    // Check if 'technologyLevel' is a valid integer between 0 and 5, otherwise return an error message
-    body("technologyLevel").isInt().withMessage("Technology level must be a number between 0 and 5"),
-];
-
-// Validation middleware for deleting an Alien by ID
-const deleteAlienValidation = [
-    // Check if 'id' parameter is a valid MongoDB ObjectId, otherwise return an error message
-    body("id").isMongoId().withMessage("Invalid ID parameter"),
-];
-
-// Export the validation middleware for use in other parts of the application
 module.exports = {
-    createAlienValidation,
-    updateAlienValidation,
-    deleteAlienValidation,
+    getAlienByIdSchema,
+    createAlienSchema,
+    updateAlienSchema,
+    deleteAlienSchema,
 };
